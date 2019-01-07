@@ -410,7 +410,7 @@ fi
 
 
 # check in supplibs directory for the additional dependent libs
-if test "Z$ga_supplib_dir" != "Z" ; then 
+#if test "Z$ga_supplib_dir" != "Z" ; then 
   echo looking in $ga_supplib_dir for additional dependent libs
 
   # png15
@@ -420,6 +420,9 @@ if test "Z$ga_supplib_dir" != "Z" ; then
   GA_SET_FLAGS([])
   AC_CHECK_LIB([png15], [main], [have_png=yes])
   GA_UNSET_FLAGS
+  if test "$have_png" != "yes" ; then
+    AC_CHECK_LIB([png15], [main], [have_png=yes])
+  fi
 
   # zlib
   echo 
@@ -430,6 +433,12 @@ if test "Z$ga_supplib_dir" != "Z" ; then
   [ AC_CHECK_LIB([z], [compress], [have_zlib=yes])
   ])
   GA_UNSET_FLAGS
+  if test "$have_zlib" != "yes" ; then
+    AC_CHECK_HEADER([zlib.h], 
+      [ AC_CHECK_LIB([z], [compress], [have_zlib=yes])
+    ])
+  fi
+
 
   # jpeg
   echo 
@@ -438,6 +447,9 @@ if test "Z$ga_supplib_dir" != "Z" ; then
   GA_SET_FLAGS([])
   AC_CHECK_LIB([jpeg], [main], [have_jpeg=yes])
   GA_UNSET_FLAGS
+  if test "$have_jpeg" != "yes" ; then
+    AC_CHECK_LIB([jpeg], [main], [have_jpeg=yes])
+  fi
 
   # jasper
   echo 
@@ -445,9 +457,18 @@ if test "Z$ga_supplib_dir" != "Z" ; then
   echo ------
   GA_SET_FLAGS([jasper])
   AC_CHECK_HEADER([jasper.h],
-  [ AC_CHECK_LIB([jasper], [main], [have_jasper=yes])
+    [ AC_CHECK_HEADER([jasper/jasper.h],
+      [ AC_CHECK_LIB([jasper], [main], [have_jasper=yes])
+    ])
   ])
   GA_UNSET_FLAGS
+  if test "$have_jasper" != "yes" ; then
+    AC_CHECK_HEADER([jasper.h],
+      [ AC_CHECK_HEADER([jasper/jasper.h],
+        [ AC_CHECK_LIB([jasper], [main], [have_jasper=yes])
+      ])
+    ])
+  fi
 
   # xml2
   echo 
@@ -471,7 +492,7 @@ if test "Z$ga_supplib_dir" != "Z" ; then
   ])
   GA_UNSET_FLAGS	
 
-fi
+#fi
 
 # * * * GD * * *
 echo 
@@ -585,11 +606,17 @@ fi
 # check in system locations
 if test "$use_cairo" != "yes" -a "$ga_dyn_supplibs" = "yes" ; then
   echo looking in other system locations
-  GA_CHECK_LIB_CAIRO([
-    use_cairo='yes'
+  if test "z$CAIRO_CFLAGS" != "z" -a "z$CAIRO_LIBS" != "z" ; then
+    use_cairo=yes
     cairo_inc=$CAIRO_CFLAGS
     cairo_libs=$CAIRO_LIBS
-  ])
+  else
+    GA_CHECK_LIB_CAIRO([
+      use_cairo='yes'
+      cairo_inc=$CAIRO_CFLAGS
+      cairo_libs=$CAIRO_LIBS
+    ])
+  fi
 fi
 # set output variables
 if test "$use_cairo" != "yes" ; then
@@ -664,6 +691,7 @@ if test "$have_udunits" = "no" -a "$ga_dyn_supplibs" = "yes" ; then
 #    udunits_libs="$UDUNITS_LIBS"
   ])
 fi
+echo have_udunits=$have_udunits
 
 
 # * * * HDF4 * * *

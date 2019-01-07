@@ -1,0 +1,26 @@
+package		supplibs	ubuntu
+readline	5.0	<	5.2 & 6.3
+ncurses		5.7	<	6.0
+zlib		1.2.8	=	1.2.8
+libpng		1.5.12	>	1.2.8
+jpeg		6b	?	8c
+gd		2.0.34	<	2.1.1		libgd-dev
+jasper		1.900.1	=	1.900.1
+g2clib		1.6.0	>	1.4.0		libgrib2c-dev
+udunits		1.11.7	<	2.2.20
+hdf		4.2r3	<	4.3.10
+hdf5		1.8.11	<	1.8.16
+curl		7.35.0	<	7.47.0		libcurl4-gnutls-dev
+netcdf		4.3.3	<	4.4.0
+tiff		3.8.2	<	4.0.6
+geotiff		1.2.5	<	1.4.1
+shapelib	1.2.10	<	1.3.0
+xml2		2.9.0	<	2.9.3
+xrender		0.9.6	<	0.9.9
+pkgconfig	0.23	<	0.29.1
+dap		3.7.8	<	3.15.1
+gsdap		2.0	!	---		I can live without this
+pixman		0.34.0	>	0.33.6
+freetype	2.4.10	<	2.6.1
+fontconfig	2.9.0	<	2.11.94
+cairo		1.14.10	>	1.14.6

@@ -54,7 +54,8 @@ AC_DEFUN([GA_LIB_READLINE], [
   AC_CACHE_CHECK([for a readline compatible library],
                  vl_cv_lib_readline, [
     ORIG_LIBS="$LIBS"
-    for readline_lib in readline edit editline; do
+    for readline_lib in readline edit; do
+dnl    for readline_lib in readline edit editline; do
       for termcap_lib in "" termcap curses ncurses; do
         if test -z "$termcap_lib"; then
           TRY_LIB="-l$readline_lib"
