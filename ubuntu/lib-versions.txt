@@ -24,3 +24,22 @@ pixman		0.34.0	>	0.33.6	0.34.0
 freetype	2.4.10	<	2.6.1	2.8.1
 fontconfig	2.9.0	<	2.11.94	2.12.6
 cairo		1.14.10	>	1.14.6	1.15.10
+
+On 18.04, I had to install the following:
+
+libgeotiff-dev
+libreadline-dev
+libgd-dev
+libgrib2c-dev
+libhdf4-dev
+libhdf5-dev
+libcurl3-gnutils-dev
+libnetcdf-dev
+libshp-dev
+libxml2-dev
+libcairo2-dev
+libxmu-headers
+autotools-dev
+autoconf
+automake
+pkg-config

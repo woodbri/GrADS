@@ -656,6 +656,7 @@ if test "$use_hdf5" != "yes" -a "$ga_dyn_supplibs" = "yes" ; then
     use_hdf5='yes'
     hdf5_inc=$HDF5_CFLAGS
     hdf5_libs="$HDF5_LIBS"
+    hdf5_ldflags=$HDF5_LDFLAGS
   ])
 fi
 # set output variables
@@ -665,6 +666,10 @@ else
   AC_DEFINE(USEHDF5, 1, [Enable hdf5])
   AC_SUBST(hdf5_inc)
   AC_SUBST(hdf5_libs)
+  AC_SUBST(hdf5_ldflags)
+  echo ... hdf5_inc = $hdf5_inc
+  echo ... hdf5_libs = $hdf5_libs
+  echo ... hdf5_ldflags = $hdf5_ldflags
 fi
 
 
