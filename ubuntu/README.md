@@ -7,7 +7,7 @@ I had to hack the build environment to be able to condifure, compile and link on
 3. installed various missing ubuntu \*-dev packages
 4. copied libpng15 from supplibs to /usr/lib as follows
 ```
-sudo cp ubuntu/supplibs/libpng15\* /usr/lib
+sudo cp ubuntu/supplibs/lib/libpng15* /usr/lib
 pushd /usr/lib
 sudo ln -s libpng15.so.15.12.0 libpng15.so.15
 sudo ln -s libpng15.so.15 libpng15.so
@@ -20,7 +20,7 @@ cd ../../..
 ln -s GrADS/ubuntu/supplibs
 cd GrADS
 ```
-5. run ``unbuntu/doit`` to configure (edit the paths for your environment)
+5. run ``ubuntu/doit`` to configure (edit the paths for your environment)
 6. sudo make
 7. resolve any problems, most likely caused by missing \*-dev packages
 8. sudo install

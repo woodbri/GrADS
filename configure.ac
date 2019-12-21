@@ -455,6 +455,7 @@ fi
   echo 
   echo jasper
   echo ------
+  echo looking in $ga_supplib_dir
   GA_SET_FLAGS([jasper])
   AC_CHECK_HEADER([jasper.h],
     [ AC_CHECK_HEADER([jasper/jasper.h],
@@ -463,11 +464,19 @@ fi
   ])
   GA_UNSET_FLAGS
   if test "$have_jasper" != "yes" ; then
+    echo JASPER_CFLAGS=$JASPER_CFLAGS
+    CFLAGS_backup="${CFLAGS}"
+    LDFLAGS_backup="${LDFLAGS}"
+    CFLAGS="${JASPER_CFLAGS} ${CFLAGS}"
+    LDFLAGS="${JASPER_LDFLAGS} ${LDFLAGS}"
+    echo looking in system dirs
     AC_CHECK_HEADER([jasper.h],
       [ AC_CHECK_HEADER([jasper/jasper.h],
         [ AC_CHECK_LIB([jasper], [main], [have_jasper=yes])
       ])
     ])
+    CFLAGS="${CFLAGS_backup}"
+    LDFLAGS="${LDFLAGS_backup}"
   fi
 
   # xml2

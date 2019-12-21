@@ -4,9 +4,14 @@ export CAIRO_CFLAGS="-I/usr/include/cairo -I/usr/include/glib-2.0 -I/usr/lib/x86
 export CAIRO_LIBS="-L/usr/lib/x86_64-linux-gnu -lcairo"
 
 export LIB=/usr/lib/x86_64-linux-gnu
-export SUPPLIBS=/home/woodbri/work/grads/supplibs
+export SUPPLIBS=/home/woodbri/work/supplibs
+export PKG_CONFIG=/usr/bin/pkg-config
+
+export JASPER_CFLAGS="-I/usr/include"
+export JASPER_LDFLAGS="-L$LIB -ljasper"
 
 ./configure \
+  --prefix=/usr/local \
   --with-geotiff-libdir=$LIB \
   --with-hdf4-libdir=/usr/lib \
   --with-hdf5-include=/usr/include/hdf5/serial/ \
@@ -15,5 +20,7 @@ export SUPPLIBS=/home/woodbri/work/grads/supplibs
   --with-netcdf-libdir=$LIB \
 
 
+#  JASPER_CFLAGS="-I/usr/include" \
+#  JASPER_LDFLAGS="-L$LIB -ljasper"
 #  --with-udunits-include=$SUPPLIBS/include \
 #  --with-udunits-libdir=$SUPPLIBS/lib \
