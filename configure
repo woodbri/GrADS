@@ -682,7 +682,6 @@ NC_NETCDF_3_CPPFLAG
 UDUNITS_LDFLAGS
 UDUNITS_CFLAGS
 UDUNITS_LIBS
-hdf5_ldflags
 hdf5_libs
 hdf5_inc
 HDF5_LDFLAGS
@@ -18572,6 +18571,7 @@ fi
   echo
   echo jasper
   echo ------
+  echo looking in $ga_supplib_dir
 
   # Use to make temporary changes to -I and -L paths
   # Just for use during tests, because configure and make may run
@@ -18642,6 +18642,12 @@ fi
   LIBS=$ga_saved_libs
 
   if test "$have_jasper" != "yes" ; then
+    echo JASPER_CFLAGS=$JASPER_CFLAGS
+    CFLAGS_backup="${CFLAGS}"
+    LDFLAGS_backup="${LDFLAGS}"
+    CFLAGS="${JASPER_CFLAGS} ${CFLAGS}"
+    LDFLAGS="${JASPER_LDFLAGS} ${LDFLAGS}"
+    echo looking in system dirs
     ac_fn_c_check_header_mongrel "$LINENO" "jasper.h" "ac_cv_header_jasper_h" "$ac_includes_default"
 if test "x$ac_cv_header_jasper_h" = xyes; then :
    ac_fn_c_check_header_mongrel "$LINENO" "jasper/jasper.h" "ac_cv_header_jasper_jasper_h" "$ac_includes_default"
@@ -18688,6 +18694,8 @@ fi
 fi
 
 
+    CFLAGS="${CFLAGS_backup}"
+    LDFLAGS="${LDFLAGS_backup}"
   fi
 
   # xml2
@@ -20567,7 +20575,6 @@ fi
     use_hdf5='yes'
     hdf5_inc=$HDF5_CFLAGS
     hdf5_libs="$HDF5_LIBS"
-    hdf5_ldflags=$HDF5_LDFLAGS
 
 else
   :
@@ -20589,10 +20596,6 @@ $as_echo "#define USEHDF5 1" >>confdefs.h
 
 
 
-
-  echo ... hdf5_inc = $hdf5_inc
-  echo ... hdf5_libs = $hdf5_libs
-  echo ... hdf5_ldflags = $hdf5_ldflags
 fi
 
 

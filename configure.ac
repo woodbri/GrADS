@@ -455,6 +455,7 @@ fi
   echo 
   echo jasper
   echo ------
+  echo looking in $ga_supplib_dir
   GA_SET_FLAGS([jasper])
   AC_CHECK_HEADER([jasper.h],
     [ AC_CHECK_HEADER([jasper/jasper.h],
@@ -463,11 +464,19 @@ fi
   ])
   GA_UNSET_FLAGS
   if test "$have_jasper" != "yes" ; then
+    echo JASPER_CFLAGS=$JASPER_CFLAGS
+    CFLAGS_backup="${CFLAGS}"
+    LDFLAGS_backup="${LDFLAGS}"
+    CFLAGS="${JASPER_CFLAGS} ${CFLAGS}"
+    LDFLAGS="${JASPER_LDFLAGS} ${LDFLAGS}"
+    echo looking in system dirs
     AC_CHECK_HEADER([jasper.h],
       [ AC_CHECK_HEADER([jasper/jasper.h],
         [ AC_CHECK_LIB([jasper], [main], [have_jasper=yes])
       ])
     ])
+    CFLAGS="${CFLAGS_backup}"
+    LDFLAGS="${LDFLAGS_backup}"
   fi
 
   # xml2
@@ -656,7 +665,6 @@ if test "$use_hdf5" != "yes" -a "$ga_dyn_supplibs" = "yes" ; then
     use_hdf5='yes'
     hdf5_inc=$HDF5_CFLAGS
     hdf5_libs="$HDF5_LIBS"
-    hdf5_ldflags=$HDF5_LDFLAGS
   ])
 fi
 # set output variables
@@ -666,10 +674,6 @@ else
   AC_DEFINE(USEHDF5, 1, [Enable hdf5])
   AC_SUBST(hdf5_inc)
   AC_SUBST(hdf5_libs)
-  AC_SUBST(hdf5_ldflags)
-  echo ... hdf5_inc = $hdf5_inc
-  echo ... hdf5_libs = $hdf5_libs
-  echo ... hdf5_ldflags = $hdf5_ldflags
 fi
 
 

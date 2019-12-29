@@ -144,8 +144,7 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
-am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__DEPENDENCIES_3 = $(am__DEPENDENCIES_2) $(am__DEPENDENCIES_1)
 libgradspy_la_DEPENDENCIES = $(am__DEPENDENCIES_3) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -183,7 +182,9 @@ am__v_lt_1 =
 libgradspy_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libgradspy_la_CFLAGS) \
 	$(CFLAGS) $(libgradspy_la_LDFLAGS) $(LDFLAGS) -o $@
-libgxdCairo_la_DEPENDENCIES = $(am__DEPENDENCIES_2) \
+am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
+libgxdCairo_la_DEPENDENCIES = $(am__DEPENDENCIES_4) \
 	$(am__DEPENDENCIES_2) $(am__DEPENDENCIES_1)
 am__libgxdCairo_la_SOURCES_DIST = gxX.c gxC.c
 @USECAIRO_TRUE@am_libgxdCairo_la_OBJECTS = libgxdCairo_la-gxX.lo \
@@ -194,7 +195,7 @@ libgxdCairo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_CFLAGS) $(CFLAGS) $(libgxdCairo_la_LDFLAGS) $(LDFLAGS) -o \
 	$@
 @USECAIRO_TRUE@am_libgxdCairo_la_rpath = -rpath $(libdir)
-libgxdX11_la_DEPENDENCIES = $(am__DEPENDENCIES_2)
+libgxdX11_la_DEPENDENCIES = $(am__DEPENDENCIES_4)
 am_libgxdX11_la_OBJECTS = libgxdX11_la-gxX11.lo libgxdX11_la-gxdxwd.lo
 libgxdX11_la_OBJECTS = $(am_libgxdX11_la_OBJECTS)
 libgxdX11_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -229,8 +230,7 @@ am_bufrscan_OBJECTS = bufrscan.$(OBJEXT) gabufr.$(OBJEXT) \
 	gabufrtbl.$(OBJEXT) gamach.$(OBJEXT)
 bufrscan_OBJECTS = $(am_bufrscan_OBJECTS)
 bufrscan_LDADD = $(LDADD)
-bufrscan_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+bufrscan_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__grads_SOURCES_DIST = grads.c gxsubs.c gxmeta.c gxchpl.c gxcntr.c \
 	gxstrm.c gxdb.c gxwmap.c gxshad.c gxshad2.c gaexpr.c gafunc.c \
 	gautil.c gagx.c gscrpt.c gamach.c gatxt.c galloc.c gaddes.c \
@@ -492,7 +492,6 @@ grib2_libs = @grib2_libs@
 gui_inc = @gui_inc@
 gui_libs = @gui_libs@
 hdf5_inc = @hdf5_inc@
-hdf5_ldflags = @hdf5_ldflags@
 hdf5_libs = @hdf5_libs@
 hdf_inc = @hdf_inc@
 hdf_libs = @hdf_libs@
@@ -557,7 +556,7 @@ noinst_HEADERS = $(hdr_core) $(hdr_ga) $(hdr_gx)
 DISTCLEANFILES = buildinfo.h config.h
 supp_include_dir = $(SUPPLIBS)/include
 supp_lib_dir = $(SUPPLIBS)/lib
-LDADD = -L$(supp_lib_dir) $(geotiff_ldflags) $(gd_ldflags) $(hdf5_ldflags)
+LDADD = -L$(supp_lib_dir) $(geotiff_ldflags) $(gd_ldflags)
 common_ldadd = $(LDADD) $(host_ldadd) 
 X11_ldadd = $(X_LIBS) $(X_PRE_LIBS) -lX11 -lXext $(X_EXTRA_LIBS)
 AM_CPPFLAGS = -I. -I$(supp_include_dir) $(gui_inc) $(nc_inc) \
@@ -632,9 +631,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__confi
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign --ignore-deps src/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu --ignore-deps src/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign --ignore-deps src/Makefile
+	  $(AUTOMAKE) --gnu --ignore-deps src/Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
 	  *config.status*) \

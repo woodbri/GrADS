@@ -84,7 +84,7 @@ DISTCLEANFILES = buildinfo.h config.h
 
 supp_include_dir	= $(SUPPLIBS)/include
 supp_lib_dir		= $(SUPPLIBS)/lib
-LDADD			= -L$(supp_lib_dir) $(geotiff_ldflags) $(gd_ldflags) $(hdf5_ldflags)
+LDADD			= -L$(supp_lib_dir) $(geotiff_ldflags) $(gd_ldflags)
 
 common_ldadd            = $(LDADD) $(host_ldadd) 
 X11_ldadd               = $(X_LIBS) $(X_PRE_LIBS) -lX11 -lXext $(X_EXTRA_LIBS)

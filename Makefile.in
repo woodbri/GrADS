@@ -360,7 +360,6 @@ grib2_libs = @grib2_libs@
 gui_inc = @gui_inc@
 gui_libs = @gui_libs@
 hdf5_inc = @hdf5_inc@
-hdf5_ldflags = @hdf5_ldflags@
 hdf5_libs = @hdf5_libs@
 hdf_inc = @hdf_inc@
 hdf_libs = @hdf_libs@

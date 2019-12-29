@@ -9,6 +9,10 @@ export CAIRO_LIBS="-L/usr/lib/x86_64-linux-gnu -lcairo"
 
 export LIB=/usr/lib/x86_64-linux-gnu
 export SUPPLIBS=/home/woodbri/work/supplibs
+export PKG_CONFIG=/usr/bin/pkg-config
+
+export JASPER_CFLAGS="-I/usr/include"
+export JASPER_LDFLAGS="-L$LIB -ljasper"
 
 ./configure \
   --prefix=/usr/local \
